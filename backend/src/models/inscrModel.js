@@ -1,8 +1,7 @@
 const connection = require('./connection');
 
 const getInscr = async (inscrValue) => {
-    console.log(inscrValue);
-
+    global.imovConsultant = inscrValue;
     // Utiliza la cláusula LIKE para buscar la parte específica del valor
     const [tasks] = await connection.execute('SELECT * FROM proprietarios WHERE imovel LIKE ?', [`%${inscrValue}%`]);
 
@@ -14,6 +13,7 @@ const getInscr = async (inscrValue) => {
         Imovel: result.Imovel,
         Endereco: result.Endereco
     }));
+    
 
     return data;
 };
